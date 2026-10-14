@@ -1,2 +1,1 @@
-# smart-inventory-devops
-Smart Inventory Management System
+# Smart Inventory Management System
