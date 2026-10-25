@@ -1,0 +1,31 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: inventory-api
+  namespace: monitoring
+  labels: {release: monitoring}
+spec:
+  namespaceSelector:
+    matchNames: [inventory]
+  selector:
+    matchLabels: {app: inventory-api}
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: inventory-alerts
+  namespace: monitoring
+  labels: {release: monitoring}
+spec:
+  namespaceSelector:
+    matchNames: [inventory]
+  selector:
+    matchLabels: {app: inventory-alerts}
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s

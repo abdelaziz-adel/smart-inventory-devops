@@ -1,0 +1,46 @@
+---
+- name: Configure demo K3s node
+  hosts: k3s
+  become: true
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Install packages
+      ansible.builtin.apt:
+        name: [curl, git, ca-certificates, python3, snapd]
+        state: present
+
+    - name: Install single-node K3s
+      ansible.builtin.shell: curl -sfL https://get.k3s.io | sh -
+      args:
+        creates: /usr/local/bin/k3s
+
+    - name: Install Helm with snap
+      community.general.snap:
+        name: helm
+        classic: true
+        state: present
+
+    - name: Check Kubernetes node
+      ansible.builtin.command: /usr/local/bin/k3s kubectl get nodes
+      changed_when: false
+
+    - name: Create user kubeconfig directory
+      ansible.builtin.file:
+        path: /home/ubuntu/.kube
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0700'
+
+    - name: Copy K3s admin kubeconfig locally on EC2 (never commit it)
+      ansible.builtin.copy:
+        src: /etc/rancher/k3s/k3s.yaml
+        dest: /home/ubuntu/.kube/config
+        remote_src: true
+        owner: ubuntu
+        group: ubuntu
+        mode: '0600'

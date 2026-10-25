@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alerts
+  namespace: inventory
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: inventory-alerts}
+  template:
+    metadata:
+      labels: {app: inventory-alerts}
+    spec:
+      containers:
+        - name: alerts
+          image: ghcr.io/abdelaziz-adel/smart-inventory-alerts:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8001
+              name: http
+          env:
+            - name: INVENTORY_API_URL
+              value: http://backend:8000
+          readinessProbe:
+            httpGet: {path: /health, port: 8001}
+            initialDelaySeconds: 5
+          resources:
+            requests: {cpu: 30m, memory: 80Mi}
+            limits: {cpu: 250m, memory: 256Mi}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: alerts
+  namespace: inventory
+  labels: {app: inventory-alerts}
+spec:
+  selector: {app: inventory-alerts}
+  ports:
+    - name: http
+      port: 8001
+      targetPort: 8001

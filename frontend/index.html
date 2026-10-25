@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Smart Inventory</title><link rel="stylesheet" href="/style.css"/></head>
+<body><main><header><h1>Smart Inventory</h1><p>Products, quantities and low-stock alerts</p></header>
+<section class="stats"><article><span>Products</span><strong id="productCount">–</strong></article><article><span>Low-stock alerts</span><strong id="alertCount">–</strong></article></section>
+<section><h2>Add product</h2><form id="productForm"><input name="name" placeholder="Product name" required maxlength="100"/><input name="quantity" type="number" min="0" value="10" required title="Quantity"/><input name="min_stock" type="number" min="0" value="5" required title="Minimum stock"/><input name="price" type="number" min="0" step="0.01" value="0" required title="Price"/><button>Add</button></form></section>
+<section><h2>Inventory <a class="export" href="/api/reports/inventory.csv">Export CSV report</a></h2><p id="status" aria-live="polite"></p><div class="overflow"><table><thead><tr><th>Product</th><th>Qty</th><th>Min</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead><tbody id="products"></tbody></table></div></section>
+<section><h2>Low stock</h2><ul id="alerts"></ul></section></main><script src="/app.js"></script></body></html>
