@@ -4,9 +4,9 @@
 A smart inventory management system that tracks stock levels, generates low-stock alerts, and provides a web dashboard for managers. The project focuses on DevOps automation, CI/CD, containerization, cloud deployment, and monitoring.
 
 ## Team Members
-1. Member 1 – Abdelaziz Adel Mohamed Hamed
-2. Member 2 – Youssef Wessam Elsabaawy Ali
-3. Member 3 – Sama Ayman Mounir Mohamed
+1. Member 1 – Abdelaziz Adel Mohamed Hamed ([LinkedIn](https://www.linkedin.com/in/abdelazizadel/))
+2. Member 2 – Youssef Wessam Elsabaawy Ali ([LinkedIn](https://www.linkedin.com/in/sama-ayman-36175a305/))
+3. Member 3 – Sama Ayman Mounir Mohamed ([LinkedIn](https://www.linkedin.com/in/youssef-wessam-6a2584293/))
 4. Member 4 – Ahmed Ibrahim Ahmed Elnagar
 5. Member 5 – Abdelrahman Ali Mohamed Mohamed
 6. Member 6 – Yossef Sherif Mohamed Mohamed
